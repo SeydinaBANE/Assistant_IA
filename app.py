@@ -1,4 +1,4 @@
-# app.py - Application Streamlit pour Data Whisperer (version open-source)
+
 
 import streamlit as st
 import pandas as pd
@@ -13,7 +13,7 @@ st.title("🤖 Décodeur de Stats – Analysez vos données avec un LLM open-sou
 
 @st.cache_resource(show_spinner=False)
 def load_model():
-    model_name = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"  # Peut être remplacé par mistralai/Mistral-7B-Instruct-v0.2
+    model_name = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"  
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32)
     return pipeline("text-generation", model=model, tokenizer=tokenizer, device=0 if torch.cuda.is_available() else -1)
@@ -50,7 +50,7 @@ if uploaded_file:
 
             try:
                 outputs = pipe(prompt, max_new_tokens=512, do_sample=True, temperature=0.3)
-                code = outputs[0]['generated_text'].split("\n", 1)[-1]  # Nettoyage du prompt original si reproduit
+                code = outputs[0]['generated_text'].split("\n", 1)[-1]  
 
                 st.subheader("📝 Code généré")
                 st.code(code, language="python")
