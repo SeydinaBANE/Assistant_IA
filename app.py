@@ -8,8 +8,8 @@ import contextlib
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 import torch
 
-st.set_page_config(page_title="Data Whisperer", layout="wide")
-st.title("🤖 Data Whisperer – Analysez vos données avec un LLM open-source")
+st.set_page_config(page_title="Décodeur de Stats", layout="wide")
+st.title("🤖 Décodeur de Stats – Analysez vos données avec un LLM open-source")
 
 @st.cache_resource(show_spinner=False)
 def load_model():
